@@ -3,11 +3,10 @@ public class Player {
     private Creatures activeCreature;
     
 
-    public Player (Creatures activeCreature){
-        this.inventory = new Inventory();
-        this.activeCreature = activeCreature;
+        public Player (){
+            this.inventory = new Inventory(); 
 
-    }
+        }
 
     public void setActiveCreature(Creatures creature){
             this.inventory.setActiveCreature(creature);
