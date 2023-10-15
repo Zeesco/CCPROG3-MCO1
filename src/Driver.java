@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class Driver{
@@ -34,35 +33,59 @@ public class Driver{
             choice = 0;
             choice = sc.nextInt();
             sc.nextLine();
+            
 
             if(choice == 1){
-                while(true){
-                    System.out.println("View Inventory");
-                    p1.getInventory().displayCreatures();
+    
                     while(true){
+                        System.out.println("View Inventory");
+                        System.out.println();
+                        p1.getInventory().displayCreatures();
+                        System.out.println();
+                        
                         System.out.println("If you want to change your creature you have to type its name. If not type [N]");
+                        System.out.print("Input: ");
                         back = sc.nextLine().toUpperCase();
-                        
-                        if(p1.getInventory().isCreatureInsideInventory(back)){
-                            System.out.println("The creature is inside the inventory");
-                            p1.getInventory().replaceCreature(name);
-                        }else{
-                            System.out.println("The creature is not inside the inventory");
+                            
+                            if(p1.getInventory().isCreatureInsideInventory(back)){
+                                System.out.println("The creature is inside the inventory");
+                                p1.getInventory().replaceCreature(back);
+                            }else if (back.equals("N")){
+                                break;
+                            }else{
+                                System.out.println("Invalid Creature Please Try Again!");
+                            }
                         }
-
-                        if(back.equals("N")){
-                            break;
-                        }
-                    }
-                        
-                    
-
-                        if(choice == 1){
-                            break;
-                        }
-                }
+                
             }else if ( choice == 2){
                 System.out.println("Explore An Area");
+                    while(true){
+                        displayArea();
+                        choice = sc.nextInt();
+                        if(choice == 1){
+                            while(true){
+                                choice = 0;
+                                Area one = new Area(p1);  
+                                one.displayAreaOne();
+                                System.out.println();
+                                System.out.print("Input: ");
+                                choice = sc.nextInt();
+
+                                if(choice == -1){
+                                    break;
+                                }
+                            }
+
+                        }else if(choice == 2){
+
+                        }else if(choice == 3){
+
+                        }else{
+                            System.out.println("Invalid area!");
+                        }
+
+                    }
+                
                 
             }else if (choice == 3){
                 System.out.println("Evolve A Creature");
@@ -77,16 +100,17 @@ public class Driver{
         sc.close();
     }
 
+    private static void displayWarningArea(){
+        System.out.println("Input an array that is not out of bounds");
+    }
 
-
-
-
-
-
-
-
-
-
+    private static void displayArea(){
+        System.out.println("Which area would you like to go? ");
+        System.out.println("[1] Area 1 (Evolution 1 Pokemon are only allowed here !)");
+        System.out.println("[2] Area 2 (Evolution 1 & 2 Pokemon are only allowed here !)");
+        System.out.println("[3] Area 3 (Evolution 1-3 Pokemon are only allowed here !)");
+        System.out.print("Input: ");
+    }
 
 
 
@@ -133,8 +157,3 @@ public class Driver{
 
 
 }
-
-    
-
-
-
