@@ -25,18 +25,10 @@ public class Player {
     
     }
   
-    public void swapCreature (ActiveCreature creature) {
-      
+    public void swapCreature (String name) {//fix this part
+      inventory.replaceCreature(name);
     }
   
-    public boolean isSwapCreature (ActiveCreature creature) {
-      return true;
-    }
-  
-    public void catchCreature (EnemyCreature enemy) {
-      
-    }
-
-    
+ 
 
 }
