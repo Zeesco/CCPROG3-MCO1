@@ -1,26 +1,40 @@
 public class Player {
     private Inventory inventory;
-    private Creatures activeCreature;
+    private ActiveCreature activeCreature;
     
 
-        public Player (){
-            this.inventory = new Inventory(); 
-
+        public Player (Inventory inventory){
+            this.inventory = inventory;
         }
 
-    public void setActiveCreature(Creatures creature){
-            this.inventory.setActiveCreature(creature);
-    }
-    public Creatures getActiveCreature() {
-        return activeCreature;
+    
+
+    public void addToInventory(Creatures creatures) {
+        inventory.addInventory(creatures);
     }
 
-    public void addCreatureToInventory(Creatures creatures) {
+    public void catchCreature(Creatures creatures) {
         inventory.addInventory(creatures);
     }
 
     public Inventory getInventory(){
         return inventory;
+    }
+
+    public void attackCreature (EnemyCreature creature) {
+    
+    }
+  
+    public void swapCreature (ActiveCreature creature) {
+      
+    }
+  
+    public boolean isSwapCreature (ActiveCreature creature) {
+      return true;
+    }
+  
+    public void catchCreature (EnemyCreature enemy) {
+      
     }
 
     
