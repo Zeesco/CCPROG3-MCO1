@@ -47,7 +47,9 @@ public class Driver {
        
 
         Player p1 = new Player(new Inventory(starterCreature));
-          p1.addToInventory(new Creatures("JONARD", "HELLO", 'h'));
+        p1.addToInventory(starterCreature);
+        p1.addToInventory(new ActiveCreature("JONARD", "HELLO", 'h'));
+        p1.addToInventory(new ActiveCreature("YES", "HELLO", 'h'));
         
 
         while (true) {
@@ -116,9 +118,10 @@ public class Driver {
                                     sc.nextLine();
 
                                     if (choice == 1) {
-                                        System.out.print("You attacked: ");
+                                        System.out.print(p1.getInventory().getActiveCreature().getName());
+                                        System.out.print(" attacked -> ");
                                         areaOne.setActiveCreatureDamage(p1.getInventory().getActiveCreature().getAttackDamage() );
-                                        areaOne.enemyAttacked(areaOne.getActiveCreatureDamage() ,p1.getInventory().getActiveCreature().getType());    
+                                        areaOne.enemyAttacked(areaOne.getActiveCreatureDamage());    
                                         System.out.print(" and dealt : "+ areaOne.getActiveCreatureDamage());
                                         
         
@@ -128,6 +131,7 @@ public class Driver {
                                                 System.out.println("You only have one pokemon in the inventory !");
                                                 break;
                                             }
+                                            p1.getInventory().displayCreatures();
                                             System.out.println("If you want to change your creature you have to type its name. If not type [N]");
                                             System.out.print("Input:");
                                             back = sc.nextLine().toUpperCase();
@@ -146,7 +150,7 @@ public class Driver {
                                         System.out.println("Catch a creature !");
                                         if(p1.isCatchCreature(areaOne.getEnemyCreature())){
                                             System.out.println("You caught a creature!");
-                                            p1.catchCreature(new Creatures(areaOne.getEnemyCreature().getName(), areaOne.getEnemyCreature().getType(), areaOne.getEnemyCreature().getFamily()));
+                                            p1.catchCreature(new ActiveCreature(areaOne.getEnemyCreature().getName(), areaOne.getEnemyCreature().getType(), areaOne.getEnemyCreature().getFamily()));
                                             break;
                                         }
                                        

@@ -20,7 +20,7 @@ public class EnemyCreature  extends Creatures{
             return health;
         }
 
-        public void receiveDamageHealth(double damage , String type){
+        public void receiveDamageHealth(double damage){
             this.health = this.health - damage;
         }
 

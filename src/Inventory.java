@@ -36,15 +36,7 @@ The active creature is the one used for various in-game actions.
         this.creature.add(creature);
     }
   
-/**
-* Sets the active creature in the inventory.
-*
-* @param activeCreature The active creature to be set as the active creature in the inventory.
-*/
-  
-    public void setActiveCreature(Creatures creature) {
-        this.activeCreature = (ActiveCreature) creature;
-    }
+
 
 /**
 * Retrieves the currently active creature in the inventory.
@@ -78,16 +70,23 @@ The active creature is the one used for various in-game actions.
 * @param name The name of the creature to be set as the active creature.
 */
   
-public void replaceCreature(String name){
-    for(Creatures creature : creature){
-        if(creature.getName().equals(name) && creature instanceof ActiveCreature ){
-            addInventory(activeCreature);
-            activeCreature = (ActiveCreature) creature;//downcast
+public void replaceCreature(String name) {
+    
+    
+    for (Creatures creature : creature) {
+        if (creature.getName().equals(name) && creature instanceof ActiveCreature) {
+            // Remove the current active creature from the inventory
+            
+
+            // Set the new active creature
+            this.activeCreature = (ActiveCreature) creature;
+
+            // Add the new active creature back to the inventory
+           
+
             System.out.println();
-            System.out.println("Successfull swapped");
+            System.out.println("Successfully swapped");
             break;
-        }else{
-            System.out.println("not successful bro");
         }
     }
 }

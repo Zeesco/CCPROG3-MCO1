@@ -36,8 +36,8 @@ public class Player {
         return inventory;
     }
     
-    public void setActiveCreature(){
-        activeCreature = inventory.getActiveCreature();
+    public void setActiveCreature(String name){
+       setActiveCreature(name);
     }
 
 
@@ -53,7 +53,7 @@ public class Player {
 
     public void attackEnemyCreature(EnemyCreature enemy)
     {
-        enemy.receiveDamageHealth(activeCreature.getAttackDamage(),inventory.getActiveCreature().getType());
+        enemy.receiveDamageHealth(activeCreature.getAttackDamage());
     }
   
     public void swapCreature (String name) {//fix this part

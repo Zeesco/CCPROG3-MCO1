@@ -55,13 +55,21 @@ public class Area {
         
     }
 
-    public void enemyAttacked(double damage,String type)
+    public void enemyAttacked(double damage)
     {
-        enemyCreature.receiveDamageHealth(damage,type);
+        enemyCreature.receiveDamageHealth(damage);
     }
 
     public Double getActiveCreatureDamage (){
-        return activeDamage;
+        if(enemyCreature.getType().equals("FIRE") && player.getInventory().getActiveCreature().getType().equals("WATER")){
+            return activeDamage * 1.5;
+        }else if(enemyCreature.getType().equals("LEAF") && player.getInventory().getActiveCreature().getType().equals("FIRE")){
+            return activeDamage * 1.5;
+        }else if(enemyCreature.getType().equals("WATER") && player.getInventory().getActiveCreature().getType().equals("GRASS")){
+            return activeDamage * 1.5;
+        }else{
+            return activeDamage;
+        }
     }
     public void setActiveCreatureDamage (double activeDamage){
         this.activeDamage = activeDamage;
