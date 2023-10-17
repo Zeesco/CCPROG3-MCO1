@@ -1,13 +1,21 @@
+import java.util.Random;
+
 public class ActiveCreature  extends Creatures{
     
-    private double attackDamage;
+   
+    private int level;
+    private Random random;
+   
 
         ActiveCreature(String name, String type, char family){
             super(name, type, family);
-            this.attackDamage = 100.0;
+            this.level = getLevel();
+            random  = new Random();
+           
         }
 
         public double getAttackDamage() {
-            return attackDamage;
+            int randomNumber = random.nextInt(1,10);
+            return randomNumber * level;
         }
 }

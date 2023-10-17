@@ -11,6 +11,8 @@ public class Inventory{
     private ArrayList <Creatures> creature;
     private ActiveCreature activeCreature;
 
+  
+
 /**
 * Constructs an Inventory with the given active creature.
 *
@@ -40,8 +42,8 @@ The active creature is the one used for various in-game actions.
 * @param activeCreature The active creature to be set as the active creature in the inventory.
 */
   
-    public void setActiveCreature(ActiveCreature activeCreature) {
-        this.activeCreature = activeCreature;
+    public void setActiveCreature(Creatures creature) {
+        this.activeCreature = (ActiveCreature) creature;
     }
 
 /**
@@ -76,15 +78,57 @@ The active creature is the one used for various in-game actions.
 * @param name The name of the creature to be set as the active creature.
 */
   
-  public void replaceCreature(String name){
+public void replaceCreature(String name){
+    for(Creatures creature : creature){
+        if(creature.getName().equals(name) && creature instanceof ActiveCreature ){
+            addInventory(activeCreature);
+            activeCreature = (ActiveCreature) creature;//downcast
+            System.out.println();
+            System.out.println("Successfull swapped");
+            break;
+        }else{
+            System.out.println("not successful bro");
+        }
+    }
+}
+
+
+
+/**
+* Deletes  the  creature with another creature from the inventory with the specified name.
+*
+* @param name The name of the creature to be set as the active creature.
+*/
+  public void  deleteCreature(String name){
+    Creatures deleteCreature = null;
       for(Creatures creature : creature){
-          if(creature.getName().equals(name) ){
-              addInventory(activeCreature);
-              activeCreature = (ActiveCreature) creature; //downcast
+          if(creature.getName().equals(name) && creature instanceof ActiveCreature ){
+              deleteCreature  = creature;
               break;
           }
       }
+      if(deleteCreature != null){
+        creature.remove(deleteCreature);
+      }
   }
+
+  /**
+* Verifies if  the user deletes the active creature this condition prohibits them from deleting the active creatur
+*
+* @param name The name of the creature to be set as the active creature.
+*/
+
+  public boolean isDeleteCreature(String name){
+
+          if(activeCreature.getName().equals(name) ){
+              return false;
+          }
+      return true;
+    
+  }
+
+
+
 
 /**
 * Displays information about active and caught creatures in the inventory.
@@ -93,7 +137,6 @@ The active creature is the one used for various in-game actions.
 */
   
     public void displayCreatures(){
-
     System.out.println("Active Creature: ");
     System.out.println("Type: " + activeCreature.getType() + " Family: "+ activeCreature.getFamily() + ", Name: " +  activeCreature.getName() + ", Level: " + activeCreature.getLevel());
 
@@ -103,5 +146,9 @@ The active creature is the one used for various in-game actions.
           System.out.println("Type: " + creature.getType() + ", Name: " + creature.getName() + ", Level: " +  creature.getLevel());
         }
       }
+    }
+
+    public int getNumberOfCreatures() {
+        return creature.size();
     }
   }  
