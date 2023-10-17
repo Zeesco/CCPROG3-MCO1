@@ -5,6 +5,7 @@ public class Player {
     private int position;
     private ActiveCreature activeCreature;
     private Random random;
+    private int positionY;
     
    
     
@@ -12,6 +13,7 @@ public class Player {
         public Player (Inventory inventory){
             this.inventory = inventory;
             this.position = 0;
+            this.positionY = 0;
             this.random = new Random();
         }
 
@@ -66,8 +68,14 @@ public class Player {
         }
         return false;
     }
-  
 
+    public void resetPosition() {
+        this.position = 0;
+    }
+    public void resetPositionY() {
+        this.position = 0;
+    }
+  
 
     public void moveLeft() {
         if(getPosition() >=1){
@@ -78,8 +86,8 @@ public class Player {
        
     }
 
-    public void moveRight(Area areaOne) {
-        if(getPosition() < areaOne.getSizeArea() - 1){ // clarify this is class relationships
+    public void moveRight(int size) {
+        if(getPosition() < size - 1){ // clarify this is class relationships
             position++;
         }else{
              System.out.println("You are out of bounds");
@@ -89,6 +97,17 @@ public class Player {
     public int getPosition() {
         return position;
     }
- 
+    
+    public void moveUp() {
+        if (positionY > 0) positionY--;
+    }
+
+    public void moveDown(int size) {
+        if (positionY < size) positionY++;
+    }
+
+    public int getPositionY() {
+        return positionY;
+    }
 
 }

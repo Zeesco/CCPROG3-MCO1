@@ -10,10 +10,7 @@ public class Area {
     private Player player;
     private double activeDamage;
     
-   
-
-   
- 
+    
    
 
     public Area(Player player)
@@ -22,6 +19,8 @@ public class Area {
         this.enemyCreature = new EnemyCreature(null, null, 'n').generateEnemy();
         areaOne = new int[5];
         random = new Random();
+        
+        
     }
 
     public boolean isArea(int choice){

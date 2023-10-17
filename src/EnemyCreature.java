@@ -25,7 +25,7 @@ public class EnemyCreature  extends Creatures{
         }
 
         public EnemyCreature generateEnemy(){
-            int randomType = random.nextInt(2) + 1;
+            int randomType = random.nextInt(1,2);
     
             if(randomType == 1){
                 int randomName = random.nextInt(2) + 1;

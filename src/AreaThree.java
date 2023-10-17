@@ -1,18 +1,17 @@
-public class AreaTwo extends Area{
-
-    private int areaTwo[][];
+public class AreaThree extends Area{
+    private int areaThree[][];
     private Player player;
 
-    AreaTwo(Player player){
+    AreaThree(Player player){
         super(player);
         this.player = player;
-        areaTwo = new int [3][3];
+        areaThree = new int [4][4];
     }
 
 
     public void displayAreaTwo() {
-        for (int i = 0; i < areaTwo.length; i++) {
-            for (int j = 0; j < areaTwo[i].length; j++) {
+        for (int i = 0; i < areaThree.length; i++) {
+            for (int j = 0; j < areaThree[i].length; j++) {
                 if(player.getPosition() == j && player.getPositionY() == i){
                     System.out.print("[U]");
                 }else{
@@ -25,7 +24,7 @@ public class AreaTwo extends Area{
     }
     
 
-    public int getAreaTwoSize() {
-        return areaTwo.length;
+    public int getAreaThreeSize() {
+        return areaThree.length;
     }
 }

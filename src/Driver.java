@@ -97,7 +97,8 @@ public class Driver {
                         while (true) {
 
                             Area areaOne = new Area(p1);
-                        
+                            p1.resetPosition();
+
                             System.out.println("Area One ");
                             areaOne.displayAreas();
                             System.out.println();
@@ -176,8 +177,69 @@ public class Driver {
 
                         }
                     } else if (choice == 2) {
+                        AreaTwo areaTwo = new AreaTwo(p1);
+                        p1.resetPosition();
+                        p1.resetPositionY();
+
+                        while (true){
+                        
+                        areaTwo.displayAreaTwo();
+                        System.out.println();
+                        System.out.println("Type [E] to escape");
+                        System.out.print("Input: ");
+                        direction = sc.nextLine().toUpperCase();
+                         if (direction.equals("L")) {
+                            System.out.println("The user went left");
+                                p1.moveLeft();
+                        } else if (direction.equals("R")) {
+                                System.out.println("The  user went right");
+                                    p1.moveRight(areaTwo.getAreaTwoSize());
+                        } else if (direction.equals("U")) {
+                            System.out.println("user moved up");
+                            p1.moveUp();
+            
+                         }else if (direction.equals("D")) {
+                            System.out.println("user moved down");
+                            p1.moveDown(areaTwo.getAreaTwoSize());
+                         }else if (direction.equals("E")){
+                            break;
+                         }else{
+                            System.out.println("invalid output");
+                         }
+                    }
 
                     } else if (choice == 3) {
+                        AreaThree areaThree = new AreaThree(p1);
+                        p1.resetPosition();
+                        p1.resetPositionY();
+
+                        while (true){
+                        
+                        areaThree.displayAreaTwo();
+                        System.out.println();
+                        System.out.println("Type [E] to escape");
+                        System.out.print("Input: ");
+                        direction = sc.nextLine().toUpperCase();
+                         if (direction.equals("L")) {
+                            System.out.println("The user went left");
+                                p1.moveLeft();
+                        } else if (direction.equals("R")) {
+                                System.out.println("The  user went right");
+                                    p1.moveRight(areaThree.getAreaThreeSize());
+                        } else if (direction.equals("U")) {
+                            System.out.println("user moved up");
+                            p1.moveUp();
+            
+                         }else if (direction.equals("D")) {
+                            System.out.println("user moved down");
+                            p1.moveDown(areaThree.getAreaThreeSize());
+                         }else if (direction.equals("E")){
+                            break;
+                         }else{
+                            System.out.println("invalid output");
+                         }
+                        }
+
 
                     } else if (choice == 4) {
                         break;
@@ -204,7 +266,7 @@ public class Driver {
             p1.moveLeft();
         } else if (direction.equals("R")) {
             System.out.println("The  user went right");
-            p1.moveRight(areaOne);
+            p1.moveRight(areaOne.getSizeArea());
         } else if (!direction.equals("E")) {
             System.out.println("Invalid Input");
         }
