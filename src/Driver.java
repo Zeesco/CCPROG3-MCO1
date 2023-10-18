@@ -1,5 +1,15 @@
 import java.util.Scanner;
 
+/**
+ * Welcome to the Pokémon Adventure Game!
+ * 
+ * Embark on an exciting journey in a world filled with unique creatures known as Pokémon. 
+ * 
+ * Explore different areas, challenge other creatures, and engage in epic battles to prove your skills.
+ * 
+ * Get ready to catch 'em all, discover legendary Pokémon!
+ */
+
 public class Driver {
 
     /**
@@ -41,15 +51,19 @@ public class Driver {
         } while (starterCreature.isName(name) == true);
         starterCreature.setFamily(name, type);
         if (starterCreature != null) {
-            System.out.println("Creature successfully created !");
+            System.out.println("\n\nCreature successfully created !");
             System.out.println();
         }
+
+        /**
+        * Creates a new player instance (p1) and initializes their inventory with the starter creature.
+        *
+        * @param starterCreature The starter creature used to initialize the player's inventory.
+        */
        
 
         Player p1 = new Player(new Inventory(starterCreature));
         p1.addToInventory(starterCreature);
-        p1.addToInventory(new ActiveCreature("JONARD", "HELLO", 'h'));
-        p1.addToInventory(new ActiveCreature("YES", "HELLO", 'h'));
         
 
         while (true) {
@@ -59,22 +73,35 @@ public class Driver {
             choice = sc.nextInt();
             sc.nextLine();
 
+        /**
+         * This block of code represents the main logic of the Pokémon Adventure Game.
+         * It contains various game options, including viewing the player's inventory, exploring different areas,
+         * evolving creatures, and exiting the game.
+         *
+         * The player's actions are processed, including encounters with creatures, battles, and creature evolution.
+         * The player's choices are continually checked and processed until the player decides to exit the game.
+         *
+         * @param choice The user's input choice, determining the course of action in the game.
+         * @param sc     The Scanner object used for user input.
+         * @param p1     The player object representing the game character.
+         */
+
             if (choice == 1) {
                 while (true) {
-                    System.out.println("View Inventory");
+                    System.out.println("\n\n[1]View Inventory");
                     while (true) {
                         p1.getInventory().displayCreatures();
                         System.out.println(
-                                "If you want to change your creature you have to type its name. If not type [N]");
+                                "\n\nIf you want to change your creature you have to type its name. If not type [N]");
                         System.out.print("Input:");
                         back = sc.nextLine().toUpperCase();
                         System.out.println(back);
 
                         if (p1.getInventory().isCreatureInsideInventory(back)) {
-                            System.out.println("The creature is inside the inventory");
+                            System.out.println("\n\nThe creature is inside the inventory");
                             p1.getInventory().replaceCreature(back);
                         } else {
-                            System.out.println("The creature is not inside the inventory");
+                            System.out.println("\n\nThe creature is not inside the inventory");
                         }
 
                         if (back.equals("N")) {
@@ -87,34 +114,38 @@ public class Driver {
                     }
                 }
             } else if (choice == 2) {
-                System.out.println("Explore An Area");
+                System.out.println("\n\n[2] Explore An Area");
                 while (true) {
                     displayAreas();
                     choice = sc.nextInt();
                     sc.nextLine();
                     if (choice == 1) {
 
+                       
+                        p1.resetPosition();
                         while (true) {
 
                             Area areaOne = new Area(p1);
-                            p1.resetPosition();
-
+                            
                             System.out.println("Area One ");
                             areaOne.displayAreas();
                             System.out.println();
-                            System.out.println("Type [E] to escape");
+                            System.out.println("\nType [E] to escape");
                             System.out.print("Input: ");
                             direction = sc.nextLine().toUpperCase();
                             if (areaOne.isEncounterCreature() == true) {
-                                System.out.println("You have encountered a creature !");
+                                System.out.println("\n\nYou have encountered a creature !");
                                 
                                 int ctr = 0;
                                 while (true) {
                                     areaOne.displayEnemyCreature();
+                                    System.out.println("--------------------");
                                     System.out.println("[1] Attack the Creature");
                                     System.out.println("[2] Swap an Active Creature");
                                     System.out.println("[3] Catch the Creature");
                                     System.out.println("[4] Run Away");
+                                    System.out.println("--------------------");
+                                    System.out.print("Input: ");
                                     choice = sc.nextInt();
                                     sc.nextLine();
 
@@ -129,41 +160,41 @@ public class Driver {
                                     } else if (choice == 2) {
                                         while (true) {
                                             if(p1.isSwap() == true){
-                                                System.out.println("You only have one pokemon in the inventory !");
+                                                System.out.println("\nYou only have one pokemon in the inventory !");
                                                 break;
                                             }
                                             p1.getInventory().displayCreatures();
-                                            System.out.println("If you want to change your creature you have to type its name. If not type [N]");
+                                            System.out.println("\nIf you want to change your creature you have to type its name. If not type [N]");
                                             System.out.print("Input:");
                                             back = sc.nextLine().toUpperCase();
 
                                             if (p1.getInventory().isCreatureInsideInventory(back)) {
-                                                System.out.println("The creature is inside the inventory");
+                                                System.out.println("\nThe creature is inside the inventory");
                                                 p1.getInventory().replaceCreature(back);
                                             } else {
-                                                System.out.println("The creature is not inside the inventory");
+                                                System.out.println("\nThe creature is not inside the inventory");
                                             }
                                             if (back.equals("N")) {
                                                 break;
                                             }
                                         }
                                     } else if (choice == 3) {
-                                        System.out.println("Catch a creature !");
+                                        System.out.println("\nCatch a creature !");
                                         if(p1.isCatchCreature(areaOne.getEnemyCreature())){
-                                            System.out.println("You caught a creature!");
+                                            System.out.println("\nYou caught a creature!");
                                             p1.catchCreature(new ActiveCreature(areaOne.getEnemyCreature().getName(), areaOne.getEnemyCreature().getType(), areaOne.getEnemyCreature().getFamily()));
                                             break;
                                         }
                                        
                                     } else if (choice == 4) {
-                                        System.out.println("user running away");
+                                        System.out.println("\nuser running away");
                                         break;
                                     }else{
-                                        System.out.println("Invalid Output !");
+                                        System.out.println("\nInvalid Output !");
                                     }
 
                                     if (ctr == 2) {
-                                        System.out.println("enemy creature ran away!");
+                                        System.out.println("\nenemy creature ran away!");
                                         break;
                                     }
                                     ctr++;
@@ -248,12 +279,37 @@ public class Driver {
                 }
 
             } else if (choice == 3) {
-                System.out.println("Evolve A Creature");
+                System.out.println("\n\n[3] Evolve A Creature");
+                Inventory creatureInventory = p1.getInventory();
+                creatureInventory.displayCreatures();
+                System.out.print("\n\nInput Creature 1 name: ");
+                String creature1Name = sc.nextLine();
+                System.out.print("Input Creature 2 name: ");
+                String creature2Name = sc.nextLine();
+
+                Creatures creature1 = creatureInventory.getCreatureByName(creature1Name);
+                Creatures creature2 = creatureInventory.getCreatureByName(creature2Name);
+
+                if (creature1 != null && creature2 != null) {
+                    Evolution evolution = new Evolution(creatureInventory);
+                    EvolutionResult result = evolution.evolveCreatures(creature1, creature2);
+
+                    if (result.isSuccess()) {
+                        System.out.println("\n\nEvolution was successful. Evolved creature: " + result.getEvolvedCreature().getName());
+                    } else {
+                        System.out.println("\n\nEvolution failed.");
+                    }
+                } else {
+                    System.out.println("\n\nOne or both of the specified creatures were not found in the inventory.");
+                }
+
+
+
             } else if (choice == 4) {
-                System.out.println("Thank you for playing the game!");
+                System.out.println("\n\nThank you for playing the game!");
                 break;
             } else {
-                System.out.println("Wrong Input Try Again !");
+                System.out.println("\n\nWrong Input Try Again !");
             }
         }
 
@@ -262,63 +318,75 @@ public class Driver {
 
     private static void movePlayer(String direction, Area areaOne, Player p1) {
         if (direction.equals("L")) {
-            System.out.println("The user went left");
+            System.out.println("\n\nThe user went left");
             p1.moveLeft();
         } else if (direction.equals("R")) {
-            System.out.println("The  user went right");
+            System.out.println("\n\nThe  user went right");
             p1.moveRight(areaOne.getSizeArea());
         } else if (!direction.equals("E")) {
-            System.out.println("Invalid Input");
+            System.out.println("\n\nInvalid Input");
         }
     }
 
     private static void displayAreas() {
+        System.out.println("--------------------");
         System.out.println("[1] Area One");
         System.out.println("[2] Area Two");
         System.out.println("[3] Area Three");
         System.out.println("[4] Exit ");
+        System.out.println("--------------------");
         System.out.print("Input: ");
     }
 
     private static void displayType() {
         System.out.println("What type of pokemon would you like?");
+        System.out.println("--------------------");
         System.out.println(" * Fire ");
         System.out.println(" * Water ");
         System.out.println(" * Leaf ");
+        System.out.println("--------------------");
         System.out.print("Input: ");
     }
 
     private static void displayName(String type) {
 
-        System.out.println("Choose a Pokemon ! ");
+        System.out.println("\n\nChoose a Pokemon ! ");
         if (type.equals("FIRE")) {
-            System.out.println("Fire type Pokemons");
+            System.out.println("\n\nFire type Pokemons");
+            System.out.println("--------------------");
             System.out.println("-> STRAWMANDER <-");
             System.out.println("-> CHOCOWOOL <-");
             System.out.println("-> PARFWIT <-");
+            System.out.println("--------------------");
             System.out.print("Input: ");
         } else if (type.equals("WATER")) {
-            System.out.println("Water type Pokemons");
+            System.out.println("\n\nWater type Pokemons");
+            System.out.println("--------------------");
             System.out.println("-> SQUIRPIE <-");
             System.out.println("-> CHOCOLITE <-");
             System.out.println("-> OSHACONE <-");
+            System.out.println("--------------------");
             System.out.print("Input: ");
         } else {
-            System.out.println("Leaf type Pokemons");
+            System.out.println("\n\nLeaf type Pokemons");
+            System.out.println("--------------------");
             System.out.println("-> BROWNISAUR <-");
             System.out.println("-> FRUBAT <-");
             System.out.println("-> MALTS <-");
+            System.out.println("--------------------");
             System.out.print("Input: ");
 
         }
     }
 
     private static void displayMainMenu() {
-        System.out.println("POKEMON GAME");
+        System.out.println("\n\nPOKEMON GAME");
+        System.out.println("--------------------");
         System.out.println("[1] View Inventory");
         System.out.println("[2] Explore an Area");
         System.out.println("[3] Evolve a Creature");
         System.out.println("[4] Exit");
+        System.out.println("--------------------");
         System.out.print("Input: ");
     }
 }

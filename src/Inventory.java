@@ -98,7 +98,7 @@ public void replaceCreature(String name) {
 *
 * @param name The name of the creature to be set as the active creature.
 */
-  public void  deleteCreature(String name){
+  public void deleteCreature(Creatures name){
     Creatures deleteCreature = null;
       for(Creatures creature : creature){
           if(creature.getName().equals(name) && creature instanceof ActiveCreature ){
@@ -126,8 +126,21 @@ public void replaceCreature(String name) {
     
   }
 
+  /**
+ * Retrieves a creature from the inventory by its name.
+ *
+ * @param name The name of the creature to retrieve.
+ * @return The Creatures object with the specified name, or null if not found.
+ */
 
-
+  public Creatures getCreatureByName(String name) {
+    for (Creatures creature : creature) {
+        if (creature.getName().equals(name)) {
+            return creature;
+        }
+    }
+    return null;
+  }
 
 /**
 * Displays information about active and caught creatures in the inventory.
@@ -136,13 +149,17 @@ public void replaceCreature(String name) {
 */
   
     public void displayCreatures(){
-    System.out.println("Active Creature: ");
-    System.out.println("Type: " + activeCreature.getType() + " Family: "+ activeCreature.getFamily() + ", Name: " +  activeCreature.getName() + ", Level: " + activeCreature.getLevel());
+    System.out.println("\n\nACTIVE CREATURE");
+    System.out.println("--------------------");
+    System.out.println("Type: " + activeCreature.getType() + "\nFamily: "+ activeCreature.getFamily() + "\nName: " +  activeCreature.getName() + "\nLevel: " + activeCreature.getLevel());
+    System.out.println("--------------------");
 
-    System.out.println("Caught Creatures:");
+    System.out.println("\n\nCAUGHT CREATURES");
       for(Creatures creature : creature){
         if(!creature.equals(activeCreature)){
-          System.out.println("Type: " + creature.getType() + ", Name: " + creature.getName() + ", Level: " +  creature.getLevel());
+          System.out.println("--------------------");
+          System.out.println("Type: " + creature.getType() + "\nName: " + creature.getName() + "\nLevel: " +  creature.getLevel());
+          System.out.println("--------------------");
         }
       }
     }
